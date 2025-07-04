@@ -9,7 +9,7 @@ const Home: React.FC = () => {
   return (
     <div className="home-container">
       <h1>Task Management Application</h1>
-      <button onClick={handleSignIn}>
+      <button type="button" onClick={handleSignIn}>
         Sign in with Google
       </button>
     </div>
