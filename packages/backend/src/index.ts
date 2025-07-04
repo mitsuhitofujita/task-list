@@ -8,6 +8,9 @@ const __dirname = path.dirname(__filename);
 
 const server = fastify();
 
+// Get port from environment variable or use default
+const port = Number(process.env.PORT) || 3000;
+
 // Serve static files from the React build directory
 await server.register(fastifyStatic, {
 	root: path.join(__dirname, "../../frontend/build"),
@@ -21,14 +24,18 @@ server.get("/api/ping", async (_request, _reply) => {
 
 // Serve the React app for all non-API routes
 server.setNotFoundHandler(async (request, reply) => {
-	if (request.url.startsWith('/api/')) {
-		reply.code(404).send({ message: `Route ${request.method}:${request.url} not found`, error: 'Not Found', statusCode: 404 });
+	if (request.url.startsWith("/api/")) {
+		reply.code(404).send({
+			message: `Route ${request.method}:${request.url} not found`,
+			error: "Not Found",
+			statusCode: 404,
+		});
 	} else {
-		return reply.sendFile('index.html');
+		return reply.sendFile("index.html");
 	}
 });
 
-server.listen({ port: 8080 }, (err, address) => {
+server.listen({ port }, (err, address) => {
 	if (err) {
 		console.error(err);
 		process.exit(1);
