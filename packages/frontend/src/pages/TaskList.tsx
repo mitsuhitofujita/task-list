@@ -1,31 +1,23 @@
 import type React from "react";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useAuth } from '../contexts/AuthContext';
 
 const TaskList: React.FC = () => {
-	const navigate = useNavigate();
-
-	useEffect(() => {
-		// TODO: Check authentication - temporarily set to true for development
-		const isAuthenticated = true; // Placeholder - will be replaced with actual auth logic
-		if (!isAuthenticated) {
-			navigate("/");
-		}
-	}, [navigate]);
+	const { user, logout } = useAuth();
 
 	const handleSignOut = () => {
-		// TODO: Implement sign out
-		console.log("Sign out");
-		navigate("/");
+		logout();
 	};
 
 	return (
 		<div className="task-list-container">
 			<header>
 				<h1>Task List</h1>
-				<button type="button" onClick={handleSignOut}>
-					Sign Out
-				</button>
+				<div className="user-info">
+					<span>Welcome, {user?.name}!</span>
+					<button type="button" onClick={handleSignOut}>
+						Sign Out
+					</button>
+				</div>
 			</header>
 
 			<main>

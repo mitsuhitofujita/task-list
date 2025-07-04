@@ -1,15 +1,28 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import fastifyStatic from "@fastify/static";
+import fastifyCors from "@fastify/cors";
 import fastify from "fastify";
+import jwtPlugin from "./plugins/jwt";
+import authRoutes from "./routes/auth";
+import taskRoutes from "./routes/tasks";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const server = fastify();
+const server = fastify({ logger: true });
 
 // Get port from environment variable or use default
 const port = Number(process.env.PORT) || 3000;
+
+// Register CORS
+await server.register(fastifyCors, {
+	origin: process.env.FRONTEND_URL || "http://localhost:5173",
+	credentials: true,
+});
+
+// Register JWT plugin
+await server.register(jwtPlugin);
 
 // Serve static files from the React build directory
 await server.register(fastifyStatic, {
@@ -21,6 +34,12 @@ await server.register(fastifyStatic, {
 server.get("/api/ping", async (_request, _reply) => {
 	return "pong\n";
 });
+
+// Register auth routes
+await server.register(authRoutes, { prefix: "/api" });
+
+// Register task routes (protected)
+await server.register(taskRoutes, { prefix: "/api" });
 
 // Serve the React app for all non-API routes
 server.setNotFoundHandler(async (request, reply) => {
@@ -35,7 +54,7 @@ server.setNotFoundHandler(async (request, reply) => {
 	}
 });
 
-server.listen({ port }, (err, address) => {
+server.listen({ port, host: "0.0.0.0" }, (err, address) => {
 	if (err) {
 		console.error(err);
 		process.exit(1);
