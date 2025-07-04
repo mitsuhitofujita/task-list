@@ -59,12 +59,9 @@ Closes #42
 
 ## Common Commands
 ```bash
-npm install      # Install dependencies
-npm run dev      # Start development server
-npm run build    # Build for production
-npm test         # Run tests
-npm run lint     # Run linter
-npm run typecheck # Run type checking
+pnpm add <Package Name> # Add package
+pnpm --filter frontend build # Build frontend(React)
+pnpm --filter backend dev # Execute dev
 ```
 
 ## Project Structure
