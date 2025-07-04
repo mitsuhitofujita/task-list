@@ -1,8 +1,21 @@
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import fastifyStatic from "@fastify/static";
 import fastify from "fastify";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const server = fastify();
 
-server.get("/ping", async (_request, _reply) => {
+// Serve static files from the React build directory
+await server.register(fastifyStatic, {
+	root: path.join(__dirname, "../../frontend/build"),
+	prefix: "/",
+});
+
+// API routes
+server.get("/api/ping", async (_request, _reply) => {
 	return "pong\n";
 });
 
