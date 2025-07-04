@@ -76,3 +76,5 @@ npm run typecheck # Run type checking
 - Always verify changes with lint and type checking
 - Check for existing implementations before creating new files
 - Follow security best practices
+
+@docs/instructions/spec.md
