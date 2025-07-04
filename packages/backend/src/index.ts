@@ -19,6 +19,15 @@ server.get("/api/ping", async (_request, _reply) => {
 	return "pong\n";
 });
 
+// Serve the React app for all non-API routes
+server.setNotFoundHandler(async (request, reply) => {
+	if (request.url.startsWith('/api/')) {
+		reply.code(404).send({ message: `Route ${request.method}:${request.url} not found`, error: 'Not Found', statusCode: 404 });
+	} else {
+		reply.sendFile('index.html');
+	}
+});
+
 server.listen({ port: 8080 }, (err, address) => {
 	if (err) {
 		console.error(err);
