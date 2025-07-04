@@ -28,7 +28,7 @@ A task management web application that makes it easy to manage subtasks. Efficie
 - **Language**: TypeScript
 - **Framework**: React
 - **Build Tool**: Vite
-- **CSS Framework**: UnoCSS
+- **CSS Framework**: TailwindCSS
 - **Rendering**: SPA (Single Page Application)
 
 ### 2.3 Backend
