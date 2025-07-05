@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
 function Home() {
-	const { user, login, logout } = useAuth();
+	const { user, login, logout, isLoading } = useAuth();
 
 	const handleLoginSuccess = async (credentialResponse: CredentialResponse) => {
 		if (credentialResponse.credential) {
@@ -41,6 +41,15 @@ function Home() {
 	const handleLoginError = () => {
 		console.error("Login Failed");
 	};
+
+	if (isLoading) {
+		return (
+			<div>
+				<h1>Home Page</h1>
+				<p>Loading...</p>
+			</div>
+		);
+	}
 
 	return (
 		<div>

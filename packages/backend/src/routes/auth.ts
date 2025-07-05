@@ -125,6 +125,17 @@ export default async function authRoutes(fastify: FastifyInstance) {
 		},
 	);
 
+	// Verify JWT token endpoint
+	fastify.get(
+		"/auth/verify",
+		{
+			preHandler: [fastify.authenticate],
+		},
+		async (request, reply) => {
+			return reply.send(request.user);
+		},
+	);
+
 	// Logout (client should remove token)
 	fastify.post("/auth/logout", async (_request, reply) => {
 		return reply.send({ message: "Logged out successfully" });
