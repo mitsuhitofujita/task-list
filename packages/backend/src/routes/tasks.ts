@@ -1,11 +1,11 @@
-import type { FastifyInstance } from 'fastify';
+import type { FastifyInstance } from "fastify";
 
 export default async function taskRoutes(fastify: FastifyInstance) {
 	// All routes in this file require authentication
-	fastify.addHook('preHandler', fastify.authenticate);
+	fastify.addHook("preHandler", fastify.authenticate);
 
 	// Get all tasks for the authenticated user
-	fastify.get('/tasks', async (request, reply) => {
+	fastify.get("/tasks", async (request, reply) => {
 		// TODO: Implement Firestore integration
 		return reply.send({
 			tasks: [],
@@ -14,16 +14,16 @@ export default async function taskRoutes(fastify: FastifyInstance) {
 	});
 
 	// Create a new task
-	fastify.post('/tasks', async (request, reply) => {
+	fastify.post("/tasks", async (request, reply) => {
 		// TODO: Implement task creation
 		return reply.send({
-			message: 'Task created',
+			message: "Task created",
 			user: request.user?.email,
 		});
 	});
 
 	// Update a task
-	fastify.put('/tasks/:id', async (request, reply) => {
+	fastify.put("/tasks/:id", async (request, reply) => {
 		const { id } = request.params as { id: string };
 		// TODO: Implement task update
 		return reply.send({
@@ -33,7 +33,7 @@ export default async function taskRoutes(fastify: FastifyInstance) {
 	});
 
 	// Delete a task
-	fastify.delete('/tasks/:id', async (request, reply) => {
+	fastify.delete("/tasks/:id", async (request, reply) => {
 		const { id } = request.params as { id: string };
 		// TODO: Implement task deletion
 		return reply.send({
