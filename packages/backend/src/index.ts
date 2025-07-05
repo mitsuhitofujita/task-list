@@ -1,7 +1,7 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import fastifyStatic from "@fastify/static";
 import fastifyCors from "@fastify/cors";
+import fastifyStatic from "@fastify/static";
 import fastify from "fastify";
 import jwtPlugin from "./plugins/jwt";
 import authRoutes from "./routes/auth";
@@ -26,7 +26,7 @@ await server.register(jwtPlugin);
 
 // Serve static files from the React build directory
 await server.register(fastifyStatic, {
-	root: path.join(__dirname, "../../frontend/build"),
+	root: path.join(__dirname, "../../frontend/dist"),
 	prefix: "/",
 });
 
