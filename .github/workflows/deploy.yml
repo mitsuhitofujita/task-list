@@ -38,6 +38,7 @@ jobs:
       id: auth
       uses: google-github-actions/auth@v2
       with:
+        project_id: ${{ env.GOOGLE_CLOUD_PROJECT_ID }}
         token_format: access_token
         workload_identity_provider: projects/${{ env.GOOGLE_CLOUD_PROJECT_NUMBER }}/locations/global/workloadIdentityPools/${{ env.WORKLOAD_IDENTITY_POOL_ID }}/providers/${{ env.WORKLOAD_IDENTITY_PROVIDER }}
         service_account: ${{ env.DEPLOYER_SERVICE_ACCOUNT_EMAIL }}
