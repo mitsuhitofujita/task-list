@@ -13,7 +13,7 @@ const __dirname = path.dirname(__filename);
 const server = fastify({ logger: true });
 
 // Get port from environment variable or use default
-const port = Number(process.env.PORT) || 3000;
+const port = Number(process.env.PORT) || 8080;
 
 // Register CORS
 await server.register(fastifyCors, {

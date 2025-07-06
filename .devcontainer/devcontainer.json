@@ -8,7 +8,7 @@
 		"./features/claude-code": {}
 	},
 	// Fastifyのデフォルトポートをフォワード
-	"forwardPorts": [3000],
+	"forwardPorts": [8080],
 	// 環境変数の設定
 	"runArgs": ["--env-file", ".devcontainer/devcontainer.env"],
 	// 拡張機能や設定のカスタマイズ
