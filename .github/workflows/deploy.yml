@@ -60,7 +60,7 @@ jobs:
         project_id: ${{ env.GOOGLE_CLOUD_PROJECT_ID }}
         token_format: access_token
         workload_identity_provider: projects/${{ env.GOOGLE_CLOUD_PROJECT_NUMBER }}/locations/global/workloadIdentityPools/${{ env.WORKLOAD_IDENTITY_POOL_ID }}/providers/${{ env.WORKLOAD_IDENTITY_PROVIDER }}
-        service_account: ${{ env.DEPLOYER_SERVICE_ACCOUNT }}
+        service_account: ${{ env.DEPLOYER_SERVICE_ACCOUNT }}@${{ env.GOOGLE_CLOUD_PROJECT_ID }}.iam.gserviceaccount.com
 
     - name: Configure Docker for Artifact Registry
       run: |
