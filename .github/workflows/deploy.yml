@@ -7,6 +7,7 @@ on:
     branches: [main]
 
 env:
+  PROJECT_ID: ${{ secrets.GOOGLE_CLOUD_PROJECT_ID }}
   GOOGLE_CLOUD_PROJECT_ID: ${{ secrets.GOOGLE_CLOUD_PROJECT_ID }}
   GOOGLE_CLOUD_PROJECT_NUMBER: ${{ secrets.GOOGLE_CLOUD_PROJECT_NUMBER }}
   GOOGLE_CLOUD_REGION: asia-northeast1
